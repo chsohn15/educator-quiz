@@ -1,34 +1,42 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 * {
-  font-family: "Verdana", cursive, sans-serif;
-  color: #ffffff;
+  font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: #000000;
 }
 
 body {
-  background-color: #7cc6fe;
+  background-color: #f7f8f8;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
 }
 
-.app {
-  background-color: #252d4a;
-  width: 450px;
-  min-height: 200px;
-  height: min-content;
+.question-wrapper {
+  /* display: flex; */
+  background-color: #ffffff;
   border-radius: 15px;
-  padding: 20px;
   box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
-  display: flex;
+  color: #000000;
+  height: min-content;
   justify-content: space-evenly;
+  min-height: 200px;
+  padding: 20px;
+  width: 450px;
 }
 
 .score-section {
@@ -52,6 +60,8 @@ body {
 }
 
 .question-text {
+  font-size: 17px;
+  font-weight: 600;
   margin-bottom: 12px;
 }
 
@@ -74,29 +84,37 @@ body {
 }
 
 button {
-  width: 100%;
-  font-size: 16px;
-  color: #ffffff;
-  background-color: #252d4a;
-  border-radius: 15px;
-  display: flex;
-  padding: 5px;
-  justify-content: flex-start;
-  align-items: center;
-  border: 5px solid #234668;
+  background-color: #4ee3da;
+  background-position: 50% 100%;
+  background-repeat: no-repeat;
+  background-size: 0 100%;
+  border-radius: 26px;
+  border: none;
+  color: #000;
   cursor: pointer;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: calc(0px - .3px);
+  line-height: 1.3333;
+  margin-bottom: 10px;
+  padding: 14px 32px;
+  text-align: center;
+  text-decoration: none;
 }
 
-.correct {
+/* .correct {
   background-color: #2f922f;
 }
 
 .incorrect {
   background-color: #ff3333;
-}
+} */
 
 button:hover {
-  background-color: #555e7d;
+  background-image: linear-gradient(#fea25f, #fea25f);
+  background-position: 0 100%;
+  background-size: 100% 100%;
 }
 
 button:focus {
@@ -105,4 +123,11 @@ button:focus {
 
 button svg {
   margin-right: 5px;
+}
+
+a {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: calc(0px - .3px);
+  text-decoration: none;
 }

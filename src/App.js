@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from '@aws-amplify/ui-react';
 
 export default function App() {
   const [questionKey, setQuestionKey] = useState("role");
@@ -76,11 +77,11 @@ export default function App() {
         },
         { answerText: "Download the PDF of the course for free",
           nextStepKey: 'url',
-          url: 'https://www.facinghistory.org/resource-library/holocaust-human-behavior'
+          url: 'https://www.facinghistory.org/resource-library/holocaust-human-behavior-0'
         },
-        { answerText: "Attend an event to learn how to teach the course in your classroom",
+        { answerText: "Attend an event to learn how to teach the course in my classroom",
           nextStepKey: 'url',
-          url: 'https://www.facinghistory.org/learning-events?keys=holocaust+and+human+behavior&items_per_page=12',
+          url: 'https://www.facinghistory.org/learning-events/holocaust-human-behavior-winter-2025-online-course',
         },
       ],
     },
@@ -98,51 +99,47 @@ export default function App() {
     return answers;
   }
 
-  function findUrl(arr, keyName) {
-    let filteredArray = arr.filter((arrItem) => arrItem.key === keyName);
-    let url = filteredArray[0].url;
-    return url;
-  }
-
   function handleAnswerClick(nextStepKey) {
     setQuestionKey(nextStepKey);
   }
 
-  function displayNextStep (questionKey) {
-    let nextStep;
-    if (questionKey == 'url') {
-      let url = findUrl(questions, questionKey);
-      // nextStep = <a href={url}
+  function displayButton (answer) {
+    let button;
+    if (answer.nextStepKey === 'url') {
+      let url = answer.url;
+      button = <button><Link href={url}>{answer.answerText}</Link></button>
     }
+    else {
+      button = <button onClick={() => handleAnswerClick(answer.nextStepKey)}>{answer.answerText}</button>;
+    }
+    return button
   }
 
   return (
-    <div className="app">
-      {/* HINT: replace "false" with logic to display the 
-      score when the user has answered all the questions */}
-      {false ? (
-        <div className="score-section">
-          You scored 1 out of {questions.length}
-        </div>
-      ) : (
-        <>
-          <div className="question-section">
-            <div className="question-count">
-              <span>Question 1</span>/{questions.length}
-            </div>
-            <div className="question-text">
-              {findPrompt(questions, questionKey)}
-            </div>
+    <div className="app montserrat">
+      <div className="question-wrapper">
+        {false ? (
+          <div className="score-section">
+            You scored 1 out of {questions.length}
           </div>
-          <div className="answer-section">
-            {findAnswers(questions, questionKey).map((answer) => (
-              <button onClick={() => handleAnswerClick(answer.nextStepKey)}>
-                {answer.answerText}
-              </button>
-            ))}
-          </div>
-        </>
-      )}
+        ) : (
+          <>
+            <div className="question-section">
+              {/* <div className="question-count">
+                <span>Question 1</span>/{questions.length}
+              </div> */}
+              <div className="question-text">
+                {findPrompt(questions, questionKey)}
+              </div>
+            </div>
+            <div className="answer-section">
+              {findAnswers(questions, questionKey).map((answer) => (
+                displayButton(answer)
+              ))}
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 }
