@@ -121,6 +121,10 @@ button:focus {
   outline: none;
 }
 
+button.selected {
+  background-color: #fea25f;
+}
+
 button svg {
   margin-right: 5px;
 }
@@ -130,4 +134,9 @@ a {
   font-weight: 700;
   letter-spacing: calc(0px - .3px);
   text-decoration: none;
+}
+
+.next-button-container {
+  display: flex;
+  justify-content: right;
 }

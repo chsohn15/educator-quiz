@@ -3,61 +3,64 @@ import { Link } from '@aws-amplify/ui-react';
 
 export default function App() {
   const [questionKey, setQuestionKey] = useState("role");
+  const [role, setRole] = useState("");
+  const [topics, setTopics] = useState([]);
+  const [selectedAnswer, setSelectedAnswer] = useState('');
+  const [selectedMultipleAnswers, setSelectedMultipleAnswers] = useState([]);
 
   const questions = [
     {
       key: "role",
-      questionText: "What is your role?",
-      endpoint: false,
+      questionText: "What best describes your role?",
+      selectOptions: 'singular',
       answerOptions: [
         {
           answerText: "Teacher",
-          nextStepKey: "educator_entry",
-        },
-        {
-          answerText: "Administrator",
-          nextStepKey: "educator_entry",
-        },
-        { answerText: "Donor", nextStepKey: "donor_entry", endpoint: false },
-        {
-          answerText: "Student",
-          nextStepKey: "educator_entry",
-        },
-        {
-          answerText: "Lifelong Learner",
-          nextStepKey: "educator_entry",
-        },
-      ],
-    },
-    {
-      key: "educator_entry",
-      questionText: "What best describes what you are looking for?",
-      endpoint: false,
-      answerOptions: [
-        {
-          answerText: "Learn more about Facing History's foundational course",
-          nextStepKey: "hhb",
-          endpoint: true,
-        },
-        {
-          answerText: "I would like to browse by topic",
           nextStepKey: "explore_topics",
         },
         {
-          answerText: "I would like to see your most popular resources",
-          nextStepKey: "most_popular_resource",
+          answerText: "Administrator",
+          nextStepKey: "explore_topics",
+        },
+        { answerText: "Donor", nextStepKey: "donor_entry"},
+        {
+          answerText: "Student",
+          nextStepKey: "explore_topics",
         },
         {
-          answerText: "I would like to look up resources by search term",
-          isCorrect: false,
+          answerText: "Lifelong Learner",
+          nextStepKey: "explore_topics",
         },
       ],
     },
+    // {
+    //   key: "educator_entry",
+    //   questionText: "What best describes what you are looking for?",
+    //   answerOptions: [
+    //     {
+    //       answerText: "Learn more about Facing History's foundational course",
+    //       nextStepKey: "hhb",
+    //     },
+    //     {
+    //       answerText: "I would like to browse by topic",
+    //       nextStepKey: "explore_topics",
+    //     },
+    //     {
+    //       answerText: "I would like to see your most popular resources",
+    //       nextStepKey: "most_popular_resource",
+    //     },
+    //     {
+    //       answerText: "I would like to look up resources by search term",
+    //       isCorrect: false,
+    //     },
+    //   ],
+    // },
     {
       key: "explore_topics",
-      questionText: "Which topic would you like to explore more?",
-      endpoint: false,
+      questionText: "Which topics would you like to explore more?",
+      selectOptions: 'multiple',
       answerOptions: [
+        { answerText: "Holocaust", isCorrect: true },
         { answerText: "Democracy & Civic Engagement", isCorrect: true },
         { answerText: "Antisemitism", isCorrect: false },
         { answerText: "Culture & Identity", isCorrect: false },
@@ -69,7 +72,6 @@ export default function App() {
       key: "hhb",
       questionText:
         "Facing History's foundational course is Holocaust and Human Behavior. It analyzes how human choices shaped the history of the Holocaust.",
-      endpoint: true,
       answerOptions: [
         { answerText: "Explore the Holocaust & Human Behavior Collection",
           nextStepKey: 'url',
@@ -99,20 +101,66 @@ export default function App() {
     return answers;
   }
 
-  function handleAnswerClick(nextStepKey) {
-    setQuestionKey(nextStepKey);
+  function handleAnswerClick(answer, questionKey, questions) {
+    let filteredArray = questions.filter((question) => question.key === questionKey);
+    let selectOptionType = filteredArray[0].selectOptions;
+    if (selectOptionType === 'singular') {
+      setSelectedAnswer(answer.answerText);
+    }
+    else if (selectOptionType === 'multiple') {
+      setSelectedMultipleAnswers([
+        ...selectedMultipleAnswers,
+        answer.answerText
+      ]);
+    }
+    if (questionKey === 'role') {
+      setRole(answer.answerText);
+    }
+    else if (questionKey === 'explore_topics') {
+      setTopics([
+        ...topics,
+        answer.answerText
+      ]);
+    }
   }
 
-  function displayButton (answer) {
+  function handleAnswerSelectDisplay(answerText, questionKey, questions) {
+    let filteredArray = questions.filter((question) => question.key === questionKey);
+    let selectOptionType = filteredArray[0].selectOptions;
+    let className = '';
+    if (selectOptionType === 'singular') {
+      if (selectedAnswer === answerText) {
+        className += 'selected';
+      }
+    }
+    else if (selectOptionType === 'multiple') {
+      for (let selectedAnswer of selectedMultipleAnswers) {
+        if (selectedAnswer === answerText) {
+          className += 'selected';
+        }
+      }
+    }
+    return className;
+  }
+
+  function displayAnswerButton (answer, questionKey, questions) {
     let button;
-    if (answer.nextStepKey === 'url') {
-      let url = answer.url;
-      button = <button><Link href={url}>{answer.answerText}</Link></button>
-    }
-    else {
-      button = <button onClick={() => handleAnswerClick(answer.nextStepKey)}>{answer.answerText}</button>;
-    }
+    button = <button className={handleAnswerSelectDisplay(answer.answerText, questionKey, questions)} onClick={() => handleAnswerClick(answer, questionKey, questions)}>{answer.answerText}</button>
+    // if (answer.nextStepKey === 'url') {
+    //   let url = answer.url;
+      // button = <button><Link>{answer.answerText}</Link></button>
+    // }
+    // else {
+      //  button = <button onClick={() => handleAnswerClick(answer.nextStepKey)}>{answer.answerText}</button>;
+    // }
     return button
+  }
+
+  function handleNextButtonClick (arr, keyName) {
+    let filteredArray = arr.filter((arrItem) => arrItem.key === keyName);
+    let answerOptions = filteredArray[0].answerOptions;
+    let nextStep = answerOptions.filter((answerOption) => answerOption.answerText == selectedAnswer);
+    setQuestionKey(nextStep[0].nextStepKey);
   }
 
   return (
@@ -134,8 +182,13 @@ export default function App() {
             </div>
             <div className="answer-section">
               {findAnswers(questions, questionKey).map((answer) => (
-                displayButton(answer)
+                displayAnswerButton(answer, questionKey, questions)
               ))}
+            </div>
+            <div className="next-button-container">
+              <button onClick={() => handleNextButtonClick(questions, questionKey)} className="next-button">
+                Next
+              </button>
             </div>
           </>
         )}
