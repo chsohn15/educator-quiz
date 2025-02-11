@@ -1,93 +1,14 @@
 import React, { useState } from "react";
-import { Link } from '@aws-amplify/ui-react';
+import { Link, Heading } from '@aws-amplify/ui-react';
+import { questions } from './data.js';
 
 export default function App() {
   const [questionKey, setQuestionKey] = useState("role");
   const [role, setRole] = useState("");
   const [topics, setTopics] = useState([]);
+  const [eventPreferences, setEventPreferences] = useState([]);
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [selectedMultipleAnswers, setSelectedMultipleAnswers] = useState([]);
-
-  const questions = [
-    {
-      key: "role",
-      questionText: "What best describes your role?",
-      selectOptions: 'singular',
-      answerOptions: [
-        {
-          answerText: "Teacher",
-          nextStepKey: "explore_topics",
-        },
-        {
-          answerText: "Administrator",
-          nextStepKey: "explore_topics",
-        },
-        { answerText: "Donor", nextStepKey: "donor_entry"},
-        {
-          answerText: "Student",
-          nextStepKey: "explore_topics",
-        },
-        {
-          answerText: "Lifelong Learner",
-          nextStepKey: "explore_topics",
-        },
-      ],
-    },
-    // {
-    //   key: "educator_entry",
-    //   questionText: "What best describes what you are looking for?",
-    //   answerOptions: [
-    //     {
-    //       answerText: "Learn more about Facing History's foundational course",
-    //       nextStepKey: "hhb",
-    //     },
-    //     {
-    //       answerText: "I would like to browse by topic",
-    //       nextStepKey: "explore_topics",
-    //     },
-    //     {
-    //       answerText: "I would like to see your most popular resources",
-    //       nextStepKey: "most_popular_resource",
-    //     },
-    //     {
-    //       answerText: "I would like to look up resources by search term",
-    //       isCorrect: false,
-    //     },
-    //   ],
-    // },
-    {
-      key: "explore_topics",
-      questionText: "Which topics would you like to explore more?",
-      selectOptions: 'multiple',
-      answerOptions: [
-        { answerText: "Holocaust", isCorrect: true },
-        { answerText: "Democracy & Civic Engagement", isCorrect: true },
-        { answerText: "Antisemitism", isCorrect: false },
-        { answerText: "Culture & Identity", isCorrect: false },
-        { answerText: "Human & Civil Rights", isCorrect: false },
-        { answerText: "Racism", isCorrect: false },
-      ],
-    },
-    {
-      key: "hhb",
-      questionText:
-        "Facing History's foundational course is Holocaust and Human Behavior. It analyzes how human choices shaped the history of the Holocaust.",
-      answerOptions: [
-        { answerText: "Explore the Holocaust & Human Behavior Collection",
-          nextStepKey: 'url',
-          url: 'https://www.facinghistory.org/resource-library/holocaust-human-behavior'
-        },
-        { answerText: "Download the PDF of the course for free",
-          nextStepKey: 'url',
-          url: 'https://www.facinghistory.org/resource-library/holocaust-human-behavior-0'
-        },
-        { answerText: "Attend an event to learn how to teach the course in my classroom",
-          nextStepKey: 'url',
-          url: 'https://www.facinghistory.org/learning-events/holocaust-human-behavior-winter-2025-online-course',
-        },
-      ],
-    },
-  ];
 
   function findPrompt(arr, keyName) {
     let filteredArray = arr.filter((arrItem) => arrItem.key === keyName);
@@ -102,6 +23,7 @@ export default function App() {
   }
 
   function handleAnswerClick(answer, questionKey, questions) {
+    // Update state based on selected answers
     let filteredArray = questions.filter((question) => question.key === questionKey);
     let selectOptionType = filteredArray[0].selectOptions;
     if (selectOptionType === 'singular') {
@@ -122,11 +44,17 @@ export default function App() {
         answer.answerText
       ]);
     }
+    else if (questionKey === 'events') {
+      setEventPreferences([
+        ...eventPreferences,
+        answer.answerText
+      ]);
+    }
   }
 
   function handleAnswerSelectDisplay(answerText, questionKey, questions) {
-    let filteredArray = questions.filter((question) => question.key === questionKey);
-    let selectOptionType = filteredArray[0].selectOptions;
+    let questionArrayItem = questions.filter((question) => question.key === questionKey);
+    let selectOptionType = questionArrayItem[0].selectOptions;
     let className = '';
     if (selectOptionType === 'singular') {
       if (selectedAnswer === answerText) {
@@ -157,10 +85,19 @@ export default function App() {
   }
 
   function handleNextButtonClick (arr, keyName) {
-    let filteredArray = arr.filter((arrItem) => arrItem.key === keyName);
-    let answerOptions = filteredArray[0].answerOptions;
-    let nextStep = answerOptions.filter((answerOption) => answerOption.answerText == selectedAnswer);
-    setQuestionKey(nextStep[0].nextStepKey);
+    if (keyName === 'events') {
+
+    }
+    let questionArrayItem = arr.filter((arrItem) => arrItem.key === keyName);
+    let selectOptionType = questionArrayItem[0].selectOptions;
+    if (selectOptionType === 'multiple') {
+      setQuestionKey(questionArrayItem[0].nextStepKey);
+    }
+    else {
+      let answerOptions = questionArrayItem[0].answerOptions;
+      let nextStep = answerOptions.filter((answerOption) => answerOption.answerText == selectedAnswer);
+      setQuestionKey(nextStep[0].nextStepKey);
+    }
   }
 
   return (
