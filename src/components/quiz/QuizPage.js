@@ -131,7 +131,7 @@ function QuizPage(props) {
             {questionKey == "events" ? (
             <ReactRouterLink 
                 to='/recommendations'
-                state={{ role: role }}
+                state={{ role: role, topics: topics, eventPreferences: eventPreferences }}
                 component={Link}
             >
                 View Your Recommendations

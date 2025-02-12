@@ -140,3 +140,17 @@ a {
   display: flex;
   justify-content: right;
 }
+
+.introduction {
+  display: flex;
+  max-width: 1200px;
+}
+
+.introduction-text {
+  padding-right: 50px;
+}
+
+.introduction-image {
+  height: 300px;
+  width: auto;
+}
