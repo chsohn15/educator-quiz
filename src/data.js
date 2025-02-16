@@ -96,3 +96,31 @@ export const questions = [
     //   ],
     // },
   ];
+
+export const recommendations = [
+  {
+  key: 'Democracy & Civic Engagement',
+  items: [
+    { title: 'Fostering Civil Discourse: Difficult Classroom Conversations in a Diverse Democracy',
+      introduction: 'A must-have guide to teaching civil discourse in the classroom',
+      url: 'https://www.facinghistory.org/resource-library/fostering-civil-discourse-difficult-classroom-conversations-diverse-democracy',
+      image: 'https://www.facinghistory.org/sites/default/files/styles/scale_800/public/2024-09/Fostering_Civil_Discourse_Cover_2024.webp',
+    },
+    { title: 'Facing Ferguson: News Literacy in a Digital Age',
+      introduction: 'Teach students to think critically in the digital age',
+      url: 'https://www.facinghistory.org/resource-library/facing-ferguson-news-literacy-digital-age',
+      image: 'https://www.facinghistory.org/sites/default/files/styles/standard_hero_article_900_707_2x/public/2022-06/2019_SL_190522_0466_FH2101333.webp?h=0f4230fa&itok=eqrcsWPP',
+    },
+    { title: '10 Questions for Young Changemakers',
+      introduction: 'Inspire change and youth activism with this thought-provoking unit',
+      url: 'https://www.facinghistory.org/resource-library/10-questions-young-changemakers',
+      image: 'https://www.facinghistory.org/sites/default/files/styles/standard_hero_article_900_707_2x/public/2022-06/2012_131BullySummit2012LA131_FH116219.webp?h=265e640d&itok=EGi4xRI6',
+    },
+    { title: 'The Reconstruction Era and the Fragility of Democracy',
+      introduction: 'Delve into Reconstruction and its legacy on today\'s democracy',
+      url: 'https://www.facinghistory.org/resource-library/reconstruction-era-and-fragility-democracy-0',
+      image: 'https://www.facinghistory.org/sites/default/files/styles/standard_hero_article_900_707_2x/public/2022-07/Recon_Crop.webp?h=3d25abbd&itok=RdjE9JNp',
+    },
+  ]
+  }
+]

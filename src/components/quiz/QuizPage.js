@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, Heading } from "@aws-amplify/ui-react";
 import { questions } from "../../data.js";
-import RecommendationsPage from '../recommendations/RecommendationsPage.js';
+
 import {
     BrowserRouter as Router,
     Link as ReactRouterLink,
