@@ -189,7 +189,52 @@ export const recommendations = [
     ],
   },
   {
-    key: "Professional Development",
+    key: "Culture & Identity",
+    items: [
+      {
+        title:
+          "Back to School: Building Community for Connection and Learning",
+        introduction:
+          "Start your school year off to the right start with this toolkit",
+        url: "https://www.facinghistory.org/resource-library/back-school-building-community-connection-learning",
+        image:
+          "https://www.facinghistory.org/sites/default/files/styles/standard_hero_article_900_707_2x/public/2022-06/LA_ClassroomImage_2018_FH287148.webp?h=a141e9ea&itok=N3r2jnBq",
+      },
+      {
+        title: "Identity and Storytelling",
+        introduction: "Explore stories that help students discover their identities",
+        url: "https://www.facinghistory.org/resource-library/identity-storytelling",
+        image:
+          "https://www.facinghistory.org/sites/default/files/styles/standard_hero_article_900_707_2x/public/2022-06/Students%20writing.webp?h=a2490ace&itok=Dy77A6J_",
+      },
+      {
+        title: "Power, Agency, and Voice",
+        introduction:
+          "Empower students to find their voices and speak up for their beliefs",
+        url: "https://www.facinghistory.org/resource-library/power-agency-voice",
+        image:
+          "https://www.facinghistory.org/sites/default/files/styles/standard_hero_article_900_707_2x/public/2023-07/Chicago_Classroom_2019_FH2101383.webp?h=56d0ca2e&itok=o6viw9k4",
+      },
+      {
+        title: "Reimagining Home",
+        introduction:
+          "Discover your place in the world by re-imagining 'home'",
+        url: "https://www.facinghistory.org/resource-library/reimagining-home",
+        image:
+          "https://www.facinghistory.org/sites/default/files/styles/standard_hero_article_900_707_2x/public/2024-08/iStock-1483645445.webp?h=140710cd&itok=dGL9RVoy",
+      },
+      {
+        title: "From Fitting In to Belonging: Understanding the Forces That Shape Belonging",
+        introduction:
+          "Analyze the forces that shape our sense of belonging",
+        url: "https://www.facinghistory.org/resource-library/fitting-belonging-understanding-forces-shape-belonging",
+        image:
+          "https://www.facinghistory.org/sites/default/files/styles/standard_hero_article_900_707_2x/public/2024-03/Facing-History_SJLA_184.webp?h=56d0ca2e&itok=soi5h5te",
+      },
+    ],
+  },
+  {
+    key: "Community Events",
     items: [
       {
         title:
