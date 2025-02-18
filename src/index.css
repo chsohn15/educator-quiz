@@ -23,6 +23,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 150px;
   min-height: 100vh;
 }
 
@@ -141,6 +142,14 @@ a {
   justify-content: right;
 }
 
+.standard-list {
+  padding-top: 20px;
+}
+
+.standard-list h2 {
+  margin-bottom: 5px;
+}
+
 .introduction {
   display: flex;
   max-width: 1150px;
@@ -199,4 +208,42 @@ h1, h2 {
 
 strong {
   font-weight: 600;
+}
+
+.wide-card {
+  display: flex;
+  margin-right: 40px;
+  width: 500px;
+}
+
+.wide-card__image {
+  height: 170px;
+  object-fit: cover;
+  padding-right: 20px;
+  width: 300px;
+}
+
+.wide-card__title {
+  margin-bottom: 5px;
+  margin-top: 0;
+}
+
+.wide-card__date {
+  margin-top: 0;
+}
+
+.wide-card__introduction {
+  font-size: 16px;
+}
+
+.wide-card__date {
+  font-size: 16px;
+}
+
+.list-wide-wrapper {
+  display: flex;
+}
+
+.list-wide {
+  margin-top: 50px;
 }

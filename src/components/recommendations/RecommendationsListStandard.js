@@ -9,7 +9,7 @@ function RecommendationsListStandard(props) {
     const list = items.map(item => 
         <div class="standard-card">
             <h3 class="standard-card__introduction">{item.introduction}</h3>
-            <img class="standard-card__image" src={item.image} />
+            <img class="standard-card__image" src={item.image} alt=""/>
             <h3 class="standard-card__title"><a href={item.url}>{item.title}</a></h3>
         </div>
     );
@@ -17,7 +17,7 @@ function RecommendationsListStandard(props) {
   }
 
   return (
-    <div>
+    <div className="standard-list">
         <h2>
             {topic}
         </h2>

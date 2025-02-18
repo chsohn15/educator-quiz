@@ -188,4 +188,27 @@ export const recommendations = [
       },
     ],
   },
+  {
+    key: "Professional Development",
+    items: [
+      {
+        title:
+          "Borders and Belonging: An All Community Read Authors Event",
+        introduction:
+          "Join us for a virtual conversation with authors Safia Elhillo and Reyna Grande as part of our 2024-2025 All Community Read.",
+        url: "https://www.facinghistory.org/learning-events/borders-belonging-all-community-read-authors-event",
+        date: 'March 6, 2025',
+        image:
+          "https://www.facinghistory.org/sites/default/files/styles/standard_hero_article_900_707_2x/public/2024-01/Group_of_teenagers_reading_together.webp?h=9d5da6b6&itok=PSyZCr66",
+      },
+      {
+        title: "Beyond a Single Story: Exploring the Diversity of Jewish Identity",
+        introduction: "This webinar will elevate authentic stories of joy, diversity, and cultural texture from within the Jewish community.",
+        url: "https://www.facinghistory.org/learning-events/beyond-single-story-exploring-diversity-jewish-identity",
+        date: 'March 20, 2025',
+        image:
+          "https://www.facinghistory.org/sites/default/files/styles/standard_hero_article_900_707_2x/public/2024-05/JEPlesson1.webp?h=a49d782d&itok=PdShxckf",
+      },
+    ],
+  },
 ];

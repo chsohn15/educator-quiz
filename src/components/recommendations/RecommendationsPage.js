@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
 import RecommendationsListStandard from './RecommendationsListStandard';
-import { questions } from "../../data.js";
+import RecommendationsListWide from './RecommendationsListWide';
 
 function RecommendationsPage(props) {
   // Get props from Link
@@ -37,10 +37,11 @@ function RecommendationsPage(props) {
             We've also recommended some popular events that match your interest in <strong>{eventPreferences.map((eventPreference, index) => displayItemsWithCommas(eventPreferences, eventPreference, index))}</strong> Sign up to attend or view an event today!
           </p>
         </div>
-        <img class="introduction-image" src="https://www.facinghistory.org/sites/default/files/styles/standard_hero_article_680_534_2x/public/2022-06/Facing-History_SJLA_033.webp?h=f2fcf546&itok=uW5UKnA6" />
+        <img class="introduction-image" src="https://www.facinghistory.org/sites/default/files/styles/standard_hero_article_680_534_2x/public/2022-06/Facing-History_SJLA_033.webp?h=f2fcf546&itok=uW5UKnA6" alt=""/>
       </div>
       <div class="recommendations-wrapper">
         {topics.map(topic => <RecommendationsListStandard topic={topic}/>)}
+        {eventPreferences.map(eventPreference => <RecommendationsListWide eventPreference={eventPreference}/>)}
       </div>
     </div>
   );
